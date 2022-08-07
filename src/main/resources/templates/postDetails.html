@@ -14,7 +14,7 @@
         <div class="row g-5">
             <div class="col-md-8">
                 <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                  Post #<span th:text="${post.id}"></span> details.
+                  Post #<span th:text="${post.id}"></span> details. <a th:href="@{/tag/{id}(id=${tag.id})}" class="badge bg-primary" th:each="tag : ${post.tags}" th:text="${tag.tagName}" style="text-decoration: none; margin-right: 5px;"></a>
                 </h3>
                 <div>
                     <article class="blog-post">

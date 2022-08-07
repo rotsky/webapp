@@ -14,21 +14,24 @@
         <div class="row g-5">
           <div class="col-md-8">
             <h3 class="pb-4 mb-4 fst-italic border-bottom">
-              All posts
+              Search posts
             </h3>
+            <div class="col-md-8">
+                <form method="post">
+                    <div class="form-floating">
+                        <input type="search" name="searchRequest" class="form-control" id="floatingInput" placeholder="Search request...">
+                        <label for="floatingInput">Search request...</label>
+                    </div>    
+                </form>
+            </div>
             <div th:each="el : ${posts}">
                 <article class="blog-post" style="box-shadow: 10px 5px 5px rgb(73, 73, 73);">
-                    <h2 class="blog-post-title" th:text="${el.title}" ></h2> <a th:href="@{/tag/{id}(id=${tag.id})}" class="badge bg-primary" th:each="tag : ${el.tags}" th:text="${tag.tagName}" style="text-decoration: none; margin-right: 5px;"></a>
+                    <h2 class="blog-post-title" th:text="${el.title}" ></h2>  <a th:href="@{/tag/{id}(id=${tag.id})}" class="badge bg-primary" th:each="tag : ${el.tags}" th:text="${tag.tagName}" style="text-decoration: none; margin-right: 5px;"></a>
                     <p th:text="${el.intro}"></p>
                     <a th:href="'/posts/' + ${el.id}" class="btn btn-secondary" style="margin: 10px;">Read more</a>
                 </article>
             </div>
-      
-            <nav class="blog-pagination" aria-label="Pagination">
-              <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-              <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
-            </nav>
-      
+
           </div>
       
           <div class="col-md-4">
