@@ -7,7 +7,7 @@
 </head>
 <body>
     <main class="container modified-container">
-        <form method="post">
+        <form th:action="@{/login}" method="post" th:object="${user}">
             <!-- <img class="mb-4" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
             <h1 class="h3 mb-3 fw-normal">Please log in</h1>
         
@@ -23,7 +23,7 @@
             <button class="w-50 btn btn-lg btn-primary" type="submit">Log In</button>
             
           </form>
-          <a href="/"><button class="w-50 btn btn-lg btn-outline-secondary">Back</button></a>
+          <button class="w-50 btn btn-lg btn-outline-secondary">Back</button>
     </main>
     <div th:replace="fragments/footer :: footer"></div>
 </body>

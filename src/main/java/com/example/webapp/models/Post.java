@@ -11,12 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -44,6 +47,10 @@ public class Post {
     @Column(name = "create_date")
     private Date create_date;
 
+    @ManyToOne
+    @JsonManagedReference
+    private User user;
+    
     @ManyToMany
     @JoinTable(
         name = "post_tags",
@@ -93,6 +100,13 @@ public class Post {
         this.intro = intro;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     public String getContent() {
         return content;
     }

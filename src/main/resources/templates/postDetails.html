@@ -21,7 +21,7 @@
                         <h1 class="blog-post-title" th:text="${post.title}" ></h1>
                         <h3 th:text="${post.intro}"></h3>
                         <p th:utext="${post.content}"></p>
-                        <div class="row justify-content-start">
+                        <div th:if="${isOwner}" class="row justify-content-start">
                           <div class="col-md-auto">
                             <a th:href="'/posts/' + ${post.id} + '/edit'" class="btn btn-outline-primary">Edit</a>
                           </div>

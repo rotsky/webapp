@@ -9,9 +9,31 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
             </a>
             <div class="container" style="width: fit-content;">
-                <a class="btn btn-sm btn-outline-secondary" href="/posts">All posts</a>
+                <th:block sec:authorize="isAuthenticated()">
+                         <li>
+                             <a href="#" class="btn btn-sm btn-outline-secondary">
+                                 Welcome <span class="navbar-text" sec:authentication="name" />!
+                             </a>
+                         </li>
+                         <li>
+                             <a class="btn btn-sm btn-outline-secondary" th:href="@{/posts/create}">Create a post</a>
+                         </li>
+                     </th:block>
+                     <li><a class="btn btn-sm btn-outline-secondary" th:href="@{/posts}">All Posts</a></li>
+                     <th:block sec:authorize="isAuthenticated()">
+                        <li>
+                            <form th:action="@{/logout}" th:method="POST">
+                               <button id="logout-mobile" class="btn btn-sm btn-outline-secondary">Logout</button>
+                            </form>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="!isAuthenticated()">
+                         <li><a class="btn btn-sm btn-outline-secondary" th:href="@{/signup}">Sign Up</a></li>
+                         <li><a class="btn btn-sm btn-outline-secondary" th:href="@{/login}">Login</a></li>
+                    </th:block>
+                <!-- <a class="btn btn-sm btn-outline-secondary" href="/posts">All posts</a>
                 <a class="btn btn-sm btn-outline-secondary" href="/signup">Sign up</a>
-                <a class="btn btn-sm btn-outline-secondary" href="/login">Log in</a>
+                <a class="btn btn-sm btn-outline-secondary" href="/login">Log in</a> -->
             </div>
             </div>
         </div>

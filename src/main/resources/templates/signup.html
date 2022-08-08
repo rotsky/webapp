@@ -7,27 +7,30 @@
 </head>
 <body>
     <main class="container modified-container">
-        <form method="post">
+        <form th:action="@{/signup}" th:method="POST" th:object="${user}">
             <!-- <img class="mb-4" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         
-            <div class="form-floating" style="margin-bottom: 5px;">
-              <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Amelia Watson">
+            <div class="form-floating validate" style="margin-bottom: 5px;">
+              <input type="text" name="username" class="form-control" th:field="*{username}" id="floatingInput" placeholder="Amelia Watson">
               <label for="floatingInput">Name</label>
+              <p class="card-panel  red darken-1" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
             </div>
-            <div class="form-floating" style="margin-bottom: 5px;">
-              <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <div class="form-floating validate" style="margin-bottom: 5px;">
+              <input type="email" name="email" class="form-control" th:field="*{email}" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">Email address</label>
+              <p class="card-panel  red darken-1" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
             </div>
-            <div class="form-floating" style="margin-bottom: 5px;">
-              <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <div class="form-floating validate" style="margin-bottom: 5px;">
+              <input type="password" name="password" class="form-control" th:field="*{password}" id="floatingPassword" placeholder="Password">
               <label for="floatingPassword">Password</label>
+              <p class="card-panel  red darken-1" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
             </div>
         
             <button class="w-50 btn btn-lg btn-primary" type="submit">Sign in</button>
             
           </form>
-          <a href="/"><button class="w-50 btn btn-lg btn-outline-secondary">Back</button></a>
+          <button class="w-50 btn btn-lg btn-outline-secondary">Back</button>
     </main>
     <div th:replace="fragments/footer :: footer"></div>
 </body>

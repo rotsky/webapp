@@ -13,22 +13,25 @@
     </div>
       <main class="container">
        
-        <form action="/posts/create" method="post">
+        <form th:action="@{/posts/create}" method="post" th:object="${post}">
             <div class="row">
             <div class="col-8">
                     <h3 class="pb-4 mb-4 fst-italic border-bottom">
                       Create Post
                     </h3>
                     <div class="form-floating">
-                        <input type="text" name="title" placeholder="Enter title here" class="form-control">
+                        <input type="text" name="title" placeholder="Enter title here"  th:field="*{title}" class="form-control">
                         <label for="title">Title</label>
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
                     </div><br>
                     <div class="form-floating">
-                        <input type="text" name="intro" placeholder="Enter intro here" class="form-control">
+                        <input type="text" name="intro" th:field="*{intro}" placeholder="Enter intro here" class="form-control">
                         <label for="intro">Intro</label>
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('intro')}" th:errors="*{intro}"></p>
                     </div><br>
                     <div class="form-floating">
-                        <textarea id="inp_editor1" name="content" placeholder="Enter main text here" class="form-control"></textarea>
+                        <textarea id="inp_editor1" name="content" th:field="*{content}" placeholder="Enter main text here" class="form-control"></textarea>
+                        <p class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
                         <!-- <label for="content">Main text</label> -->
                     </div><br>
               </div>
